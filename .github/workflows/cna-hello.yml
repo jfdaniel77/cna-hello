@@ -39,7 +39,7 @@ jobs:
           OWNER="${{steps.get_repo_owner.outputs.repo_owner}}"
           TAG="latest"
           faas-cli publish
-          -f hello.yml
+          -f ${{secrets.FN_CONFIG_FILE}}
           --extra-tag ${{github.sha}}
           --platforms linux/amd64,linux/arm/v7,linux/arm64
 
@@ -52,4 +52,6 @@ jobs:
         run: >
           OWNER="${{steps.get_repo_owner.outputs.repo_owner}}"
           TAG="${{github.sha}}"
-          faas-cli deploy --gateway ${{secrets.OPENFAAS_URL}}
+          faas-cli deploy
+          -f ${{secrets.FN_CONFIG_FILE}}
+          --gateway ${{secrets.OPENFAAS_URL}}
