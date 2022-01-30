@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://139.59.223.64:8080
+functions:
+  hello:
+    lang: python3
+    handler: ./hello
+    image: jfdaniel77/hello:latest
